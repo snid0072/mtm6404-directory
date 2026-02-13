@@ -1,6 +1,6 @@
 // list function (step 2)
 const list = clients => {
-    retutn clients.map((client, index) => {
+    return clients.map((client, index) => {
         return `
         <li class="list-group-item d-flex justify-content-between" data-index="${index}">
         ${client.name}
@@ -13,7 +13,13 @@ const list = clients => {
 // order function (step 3)
 const order = (clients, property) => {
     return clients.sort((a, b) => {
-        return a[property] - b[property];
+        if (a[property] < b[property]) {
+            return -1;
+        } else if (a[property] > b[property]) {
+            return 1;
+        } else {
+            return 0;
+        }
     });
 };
 
@@ -34,7 +40,7 @@ const info = index => {
 const search = query => {
     return clients.filter(client => {
         return client.name
-            .toLowerCasee()
+            .toLowerCase()
             .includes(query.toLowerCase());
     });
 };
